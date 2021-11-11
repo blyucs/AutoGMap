@@ -18,11 +18,11 @@ numpy=1.17.4
 Visualization of block Coverage during training on qh882:
 ```
 
-![](README/MovWave_1484.gif)
+![](./MovWave_1484.gif)
 
 
 ```
 Visualization of block Coverage during training on qh1484
 ```
 
-![](README/MovWave_882_0.8_0.2_50000_1.gif)
+![](./MovWave_882_0.8_0.2_50000_1.gif)
