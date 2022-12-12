@@ -3,16 +3,14 @@ import matplotlib.pyplot as plt
 import math
 import scipy.io as io
 
-data_type = 'R882'
+# data_type = 'R882'
 # data_type = 'R1484'
-# data_type = 'R5828'
+data_type = 'R5828'
 
 if data_type == 'R5828':
 	matr = io.loadmat('R5828.mat')
 
-	#假设字典中'data'是你要的数据：
 	data = matr['R5828']
-	#转换为.npy文件：
 	A_plus = np.transpose(data.A)[0:22, 0:22]
 	fixed_gap_size = 6
 	# fixed_gap_size = 2
@@ -49,8 +47,8 @@ elif data_type == 'R1484':
 # Fill = [1, 0, 0, 1, 1]
 # dyn_gap_count = 2
 # fixed_gap_size = 6
-# Coverage = 1.000
-# Area = 0.455
+Coverage = 1.000
+Area = 0.455
 
 #      2021-10-21 19:18:20,772
 # Action = [8, 2, 2, 8, 2] # *** 0.471
@@ -68,9 +66,7 @@ elif data_type == 'R1484':
 # Coverage:1.000, Area:0.430, Reward:0.914, Sparsity:0.692
 # Fill = [1, 3, 0, 2, 3, 2]
 # Action = [2, 2, 4, 2, 2, 6, 4]
-# dyn_gap_count = 4
-
-
+dyn_gap_count = 4
 
 #2021-10-22 10:49:17,745  Decoder:[0, 0, 0, 1, 1, 1, 0, 0, 0, 1], # ***
 # Fill = [0, 2, 2, 3]
@@ -84,8 +80,8 @@ elif data_type == 'R1484':
 
 
 # 2021-10-25 19:50:17,371  Decoder:[1, 1, 0, 1, 1, 1, 0, 0, 1, 0]
-# Fill=[1, 3, 0, 2, 3, 2]
-# Action=[2, 2, 4, 2, 2, 6, 4]
+Fill=[1, 3, 0, 2, 3, 2]
+Action=[2, 2, 4, 2, 2, 6, 4]
 # Coverage=1.000
 # Area=0.430
 # Reward=0.893 # Sparsity:0.692
@@ -119,15 +115,15 @@ elif data_type == 'R1484':
 
 
 # 2021-10-24 12:17:19,238
-Fill = [2, 3, 4, 2, 3, 4, 3]   # ****
-Action = [32, 192, 160, 96, 160, 96, 64, 82]
-Coverage = 1.000
-Area = 0.225
-Reward = 0.955 #, Sparsity:0.981
+# Fill = [2, 3, 4, 2, 3, 4, 3]   # ****
+# Action = [32, 192, 160, 96, 160, 96, 64, 82]
+# Coverage = 1.000
+# Area = 0.225
+# Reward = 0.955 #, Sparsity:0.981
 
 
 
-dyn_gap_count = 6
+# dyn_gap_count = 6
 #2021-10-24 18:06:07,092
 # Fill=[4, 5, 3, 3, 3, 2, 3, 4]
 # Action=[32, 32, 160, 160, 160, 96, 160, 64, 18]
@@ -209,7 +205,7 @@ if dyn_gap_count == 4:
 elif dyn_gap_count == 6:
 	gap_case = [0, 1/5, 2/5, 3/5, 4/5, 5/5]
 
-def visualize(action, fill_action, Coverage, Area, dyn_gap_count, fixed_gap_size):
+def visualize(action, fill_action, dyn_gap_count, fixed_gap_size):
 	# plt.spy(A_plus)
 	if data_type == 'R882':
 		plt.figure(dpi=400)
@@ -218,7 +214,7 @@ def visualize(action, fill_action, Coverage, Area, dyn_gap_count, fixed_gap_size
 		plt.figure(dpi=300)
 		plt.spy(A_plus, markersize=0.5)
 	else:
-		plt.figure()
+		plt.figure(dpi=600)
 		plt.spy(A_plus)
 	start = 0
 	for i in range(len(action)):
@@ -257,10 +253,10 @@ def visualize(action, fill_action, Coverage, Area, dyn_gap_count, fixed_gap_size
 					plt.fill(x, y, alpha=0.6)
 
 		start = end +1  # for [a,b]
-	plt.text(600,100,"Coverage:{}".format(Coverage))
-	plt.text(600,150,"Area:{}".format(Area))
+	# plt.text(600,100,"Coverage:{}".format(Coverage))
+	# plt.text(600,150,"Area:{}".format(Area))
 	# plt.text(600,200,"Reward:{}".format(Reward))
 	plt.show()
 
 if __name__ == '__main__':
-	visualize(Action, Fill, Coverage, Area, dyn_gap_count, fixed_gap_size)
+	visualize(Action, Fill, dyn_gap_count, fixed_gap_size)
