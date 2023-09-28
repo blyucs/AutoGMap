@@ -362,4 +362,3 @@ class MicroControllerCell(nn.Module):
             log_probs.append(log_prob.view(1))
             entropies.append(entropy.view(1))
         return torch.cat(log_probs), torch.cat(entropies)
-
